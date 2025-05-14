@@ -1,7 +1,5 @@
 # FIAP - Faculdade de Informática e Administração Paulista
 
-<p align="center">
-<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
 </p>
 
 <br>
@@ -127,6 +125,6 @@ A solução proposta consiste em uma plataforma inteligente de monitoramento ind
 # <a name="c6"></a>6. Diagrama
 
 <p align="center">
-<img src="diagrama.drawio (1).png" alt="Driagrama da solução"></a>
+<img src="diagrama.drawio" alt="Driagrama da solução"></a>
 </p>
 
