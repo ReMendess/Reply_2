@@ -35,10 +35,12 @@ void loop() {
   int corrente_raw = analogRead(POT_CORRENTE);
   float corrente_simulada = (corrente_raw / 4095.0) * 30.0; 
   
-  Serial.printf("Temp: %.2f °C | Umid: %.2f %%\n", temp, umid);
-  Serial.printf("Vibração: X=%.2f | Y=%.2f | Z=%.2f\n", acc.acceleration.x, acc.acceleration.y, acc.acceleration.z);
-  Serial.printf("Corrente: %.2f A \n", corrente_simulada); 
-  Serial.printf("==========  ========== \n");
+  Serial.println("Temperatura: " + String(temp) + "°C" + "| Umidade: " + String(umid));
+  Serial.println("Vibração: X= " + String(acc.acceleration.x, 2) + 
+               " | Y= " + String(acc.acceleration.y, 2) + 
+               " | Z= " + String(acc.acceleration.z, 2));
+  Serial.println("Corrente: " + String(corrente_simulada, 2) + " A");
+  Serial.println("==========  ========== \n");
 
   delay(2000);
 }
