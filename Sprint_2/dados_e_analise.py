@@ -1,25 +1,22 @@
-
-import random
-import time
-from random import sample
-
-import numpy as np
-import pandas as pd
 import streamlit as st
+import pandas as pd
+import numpy as np
 import plotly.express as px
+import time
 
-def dados_wokwi(n_samples= 3000):
+# Função de criar dados simulads
+def dados_wokwi(n_samples=3000):
     np.random.seed(555)
     time.sleep(1.5)
-    print("Carregando data set. . .")
+    st.info("Carregando data set. . .")
 
-    dados_temperatura = np.random.normal(loc= 27 , scale= 2,size=n_samples)
-    dados_umidade = np.random.uniform(low=0, high=100,size=n_samples)
+    dados_temperatura = np.random.normal(loc=27, scale=2, size=n_samples)
+    dados_umidade = np.random.uniform(low=0, high=100, size=n_samples)
     acc_x = np.random.normal(loc=0, scale=0.3, size=n_samples)
     acc_y = np.random.normal(loc=0, scale=0.3, size=n_samples)
     acc_z = np.random.normal(loc=9.81, scale=0.4, size=n_samples)
     vibracao_total = np.sqrt(acc_x ** 2 + acc_y ** 2 + (acc_z - 9.81) ** 2)
-    corrente = np.random.normal(loc= 5, scale=1.5,size=n_samples)
+    corrente = np.random.normal(loc=5, scale=1.5, size=n_samples)
 
     df = pd.DataFrame({
         'Temperatura': dados_temperatura,
@@ -29,22 +26,21 @@ def dados_wokwi(n_samples= 3000):
     })
     return df
 
-
-# Criando aplicação
+# Aplicação
 st.title("Reply - Fase 2")
-st.title("Análise Exploratória dos Dados Captados nos Sensores - Wokwi")
+st.title("Análise Exploratória de Dados Simulados - Wokwi")
 
-# Sidebar de amostras
-n_samples = st.sidebar.slider("Quantidade de amostras", min_value=500, max_value=5000, value=3000, step=500)
+# Sidebar para do número de amostras
+n_samples = st.sidebar.slider("Número de amostras", min_value=500, max_value=5000, value=3000, step=500)
 
 # Botão para carregar dados
 if st.sidebar.button("Gerar dados"):
     df = dados_wokwi(n_samples)
 
-    st.success("Dados carregados!")
+    st.success("Dados carregados com sucesso!")
 
     # Mostrar tabela e estatísticas
-    st.subheader("Dados")
+    st.subheader("Prévia dos Dados")
     st.dataframe(df.head())
 
     st.subheader("Estatísticas Descritivas")
@@ -69,3 +65,4 @@ if st.sidebar.button("Gerar dados"):
 
 else:
     st.warning("Clique em 'Gerar dados' para iniciar a análise.")
+
