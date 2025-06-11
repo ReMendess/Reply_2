@@ -6,6 +6,7 @@ from random import sample
 import numpy as np
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 
 def dados_wokwi(n_samples= 3000):
     np.random.seed(555)
