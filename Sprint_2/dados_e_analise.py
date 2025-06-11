@@ -31,6 +31,7 @@ def dados_wokwi(n_samples= 3000):
 
 
 # Criando aplicação
+st.title("Reply - Fase 2")
 st.title("Análise Exploratória dos Dados Captados nos Sensores - Wokwi")
 
 # Sidebar de amostras
