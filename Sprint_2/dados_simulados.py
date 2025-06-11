@@ -26,3 +26,44 @@ def dados_wokwi(n_samples= 3000):
         'Corrente': corrente
     })
     return df
+
+
+# Criando aplicação
+st.title("Reply - Fase 2")
+st.title("Análise Exploratória dos Dados Captados nos Sensores - Wokwi")
+
+# Sidebar de amostras
+n_samples = st.sidebar.slider("Quantidade de amostras", min_value=500, max_value=5000, value=3000, step=500)
+
+# Botão para carregar dados
+if st.sidebar.button("Gerar dados"):
+    df = dados_wokwi(n_samples)
+
+    st.success("Dados carregados!")
+
+    # Mostrar tabela e estatísticas
+    st.subheader("Dados")
+    st.dataframe(df.head())
+
+    st.subheader("Estatísticas Descritivas")
+    st.write(df.describe())
+
+    # Gráficos interativos
+    st.subheader("Gráfico de Dispersão")
+    x_axis = st.selectbox("Eixo X", df.columns, index=0)
+    y_axis = st.selectbox("Eixo Y", df.columns, index=1)
+    fig1 = px.scatter(df, x=x_axis, y=y_axis, color=df[y_axis], title=f"{y_axis} vs {x_axis}")
+    st.plotly_chart(fig1)
+
+    st.subheader("Histograma")
+    hist_col = st.selectbox("Selecionar variável para histograma", df.columns, index=2)
+    fig2 = px.histogram(df, x=hist_col, nbins=40, title=f"Distribuição de {hist_col}")
+    st.plotly_chart(fig2)
+
+    st.subheader("Boxplot")
+    box_col = st.selectbox("Selecionar variável para boxplot", df.columns, index=3)
+    fig3 = px.box(df, y=box_col, title=f"Boxplot de {box_col}")
+    st.plotly_chart(fig3)
+
+else:
+    st.warning("Clique em 'Gerar dados' para iniciar a análise.")
